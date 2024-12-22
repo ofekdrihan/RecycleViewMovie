@@ -57,4 +57,9 @@ public class CustomeAdapter extends RecyclerView.Adapter<CustomeAdapter.MyViewHo
     public int getItemCount() {
         return dataSet.size();
     }
+
+    public void updateData(ArrayList<DataModel> newDataSet) {
+        this.dataSet = newDataSet;
+        notifyDataSetChanged();
+    }
 }

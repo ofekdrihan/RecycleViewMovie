@@ -7,13 +7,22 @@
     android:orientation="vertical"
     tools:context=".MainActivity" >
 
-    <EditText
-        android:id="@+id/editTextText"
+    <TextView
+        android:id="@+id/AppDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Spongebob characters and details" />
+        android:fontFamily="casual"
+        android:text="Spongebob characters and details"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Search here your specific character" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/resView"

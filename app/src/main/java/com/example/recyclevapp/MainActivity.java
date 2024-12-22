@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.SearchView;
 
 import java.util.ArrayList;
 
@@ -15,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private CustomeAdapter adapter;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,36 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new CustomeAdapter(dataSet);
         recyclerView.setAdapter(adapter);
+
+        // add filter option
+
+        searchView = findViewById(R.id.search_view);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                filterData(newText);
+                return true;
+            }
+        });
     }
+    private void filterData(String query) {
+        String lowerCaseQuery = query.toLowerCase();
+        ArrayList<DataModel> filteredList = new ArrayList<>();
+
+        for (DataModel item : dataSet) {
+            if (item.getName().toLowerCase().contains(lowerCaseQuery)) {
+                filteredList.add(item);
+            }
+        }
+        adapter.updateData(filteredList);
+    }
+
 }
 
 
